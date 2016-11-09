@@ -1,0 +1,186 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 1, 2016, Mar 1, 2016 1:33:52 PM
+    Author     : Russ
+*/
+
+/*------------------------------------*\
+    Imports
+\*------------------------------------*/
+
+
+@import "assets/sass/bourbon/bourbon.scss";
+
+
+@import "assets/sass/neat/neat.scss";
+
+
+
+
+
+@import 'variables.scss';
+
+
+@import "base/base";
+@media only screen and (max-width:767px) {
+/* menu */
+.nav ul li a{
+    color: #fff;
+}
+
+
+    .nav .menu {
+      clear: both;
+      max-height: 0;
+      transition: max-height .2s ease-out;
+    }
+
+
+    /* menu icon */
+
+
+    .nav .menu-icon {
+      cursor: pointer;
+      display: inline-block;
+      float: right;
+      padding: 0px;
+      position: relative;
+      user-select: none;
+    }
+
+
+    .nav .menu-icon .navicon {
+      background: $dark-blue;
+      display: block;
+      height: 6px;
+      position: relative;
+      transition: background .2s ease-out; 
+      width: 30px;
+      left: 17px;
+      top: 0px;
+     
+    }
+    
+    .nav .menu-icon .navicon:before,
+    .nav .menu-icon .navicon:after {
+      background: $dark-blue;
+      content: '';
+      display: block;
+      height: 6px;
+      position: absolute;
+      transition: all .2s ease-out;
+      width: 30px;
+      top: -9px;
+      
+    }
+    
+    .nav .menu-icon .navicon:before {
+      top: 10px;
+    }
+
+
+    .nav .menu-icon .navicon:after {
+      top: -10px;
+    }
+
+
+    /* menu btn */
+
+
+    .nav .menu-btn {
+      display: none;
+    }
+
+
+    .nav .menu-btn:checked ~ .menu {
+      max-height: 600px;
+    }
+
+
+    .nav .menu-btn:checked ~ .menu-icon .navicon {
+      background: transparent;
+    }
+
+
+    .nav .menu-btn:checked ~ .menu-icon .navicon:before {
+      transform: rotate(-45deg);
+    }
+
+
+    .nav .menu-btn:checked ~ .menu-icon .navicon:after {
+      transform: rotate(45deg);
+    }
+
+
+    .nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+    .nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+      top: 0;
+    }
+    #nav-toggle{
+        display:initial;
+    }
+    
+    .nav{
+        position: absolute;
+        width: 280px;
+        z-index: 2000;
+        margin: 0 0 0 0;
+        top:39px;
+   }
+    .nav ul{
+        height: auto;
+        overflow: hidden;
+        background: $blue-trans;
+        margin-left: 10px;
+        position: relative;
+        top: 50px;
+        
+    }
+    .nav ul li{
+        float: none;
+        border-bottom: 2px solid #ccc;
+        border-right:none;
+        padding: 10px 0 5px 0;
+        .fa{
+            font-size: 10px;
+            position: absolute;
+            right:126px;
+            margin:4px 0 0 0;
+        }
+    }
+    
+    .nav ul li:last-child {
+        border-bottom: none;
+        
+    }
+    .nav li{
+        display:list-item;
+        list-style-type: none
+    }
+    .nav li a {
+        font-size:2em;
+    }
+    .homePageContent{
+        top:-12px;
+    }
+    ul.sub-menu{
+        margin: -40px 0 54px 4px;
+        max-height: 290px;
+        padding: 0 0 0 0;
+        overflow: visible;
+    }
+   .hidden {display:none}
+ 
+    
+    
+    
+   
+ }
+
+
+
+
