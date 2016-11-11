@@ -50,8 +50,9 @@ html {
 	font-size:62.5%;
 }
 body {
-	font:300 11px/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	color:#444;
+	font:300 11px/1.4 'Alfa Slab One', cursive;;
+	color:#000;
+        font-family: 'Gentium Book Basic', serif;
 }
 /* clear */
 .clear:before,
@@ -97,21 +98,48 @@ input:focus {
 
 /* wrapper */
 .wrapper {
-	max-width:1280px;
-	width:95%;
+	max-width:1200px;
+	width:100%;
 	margin:0 auto;
 	position:relative;
+        background:rgb(243, 243, 243);
+        //padding:0 1em;
 }
 /* header */
 .header {
-
+    background:$news-red;
+    height: 10em;
 }
 /* logo */
 .logo {
-
+    @include span-columns(10);
+    margin-top:1em;
+    img{
+        width:6em;
+        float:left;
+        margin-left: 1emm;
+    }
+    h1{
+        color:#fff;
+        text-shadow:
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+         -1px 1px 0 #000,
+        1px 1px 0 #000;
+        margin-left:5.5em;
+        margin-top: .5em;
+        font-size: 1.2em;
+        font-family: 'Alfa Slab One', cursive;
+        font-weight: 500;
+    }
 }
 
 /* nav */
+.nav{
+    @include span-columns(2);
+    @include omega();
+}
+
 .upper-menu{
     display:none;
 }
@@ -128,24 +156,369 @@ nav input[type="checkbox"]{
 nav input[type="checkbox"]{
     display:none;
 }
-/* sidebar */
-.sidebar {
-
+.headerIcons{
+   @include span-columns(6);
+    @include shift(3); 
+    display:flex;
+    justify-content: space-around;
+    a{
+        color:#fff;
+        .fa{
+            font-size: 1.5em;
+            
+        }
+        img{
+            display:block;
+            width:2.5em;
+        }
+    }
+    a:nth-child(4){
+        height:3em;
+        border-left:1px solid rgba(255, 255, 255, .4);
+        padding-left:.5em;
+    }
 }
+
+
 /* footer */
 .footer {
-
+    @include outer-container;
+    .upperFooter{
+        @include span-columns(12);
+        background:$base-blue;
+        
+        h2{
+            font-size: 2em;
+            font-family: 'Alfa Slab One', cursive;
+            color:#fff;
+            font-weight: 500;
+            text-align: center;
+            
+        }
+    }
+}//footer
+.desktopOnly{
+    display:none;
 }
-
 /*------------------------------------*\
     PAGES
 \*------------------------------------*/
+.mainSection{
+    @include span-columns(12);
+    margin-top:3px;
+    margin-bottom:3em;
+    padding: 0 1em;
+    span.mainArticleHeader{
+        
+        h1{
+            color:$base-blue;
+            border-bottom:dashed 1px $news-red;
+            font-family: 'Alfa Slab One', cursive;
+            font-size: 1.5em;
+            margin-top:1em;
+            margin-bottom:1em;
+            height:2em;
+        }
+    }
+    .mainArticle{
+        font-family: 'Gentium Book Basic', serif;
+        h2{
+            a{
+                color:$news-red;
+                font-family: 'Alfa Slab One', cursive;
+                font-weight:500;
+                font-size: 1.2em;
+            }
+        }
+    }
+    .postSocials{
+        h3{
+            color:$dark-blue;
+        }
+        button{
+            background:#fff;
+            color:$text-gray;
+            border:solid 1px $text-gray;
+        }
+        
+    }
+    .comments{
+        color:$news-red;
+        h2{
+            color:$dark-blue;
+        }
+        a{
+            color:$news-red;
+        }
+        #respond{
+            h3{
+                color:$dark-blue;
+            }
+            input[type="submit"]{
+                background:#fff;
+                color:$text-gray;
+                border:solid 1px $text-gray;
+            }
+        }
+    }
+    .postBottom{
+        span.postDate{
+            color:$dark-blue;
+        }
+        span.postLinks{
+            color:$news-red;
+            a{
+               color:$news-red; 
+            }
+            span.grayDivider{
+                color:$text-gray;
+            }
+        }
+        p{
+            color:$dark-blue;
+        }
+        a{
+            color:$news-red;
+        }
+    }
+}//mainSection
+.sidebar{
+    @include span-columns(12);
+    clear:both;
+    background:#fff;
+    form.search{
+        display: block;
+        width:100%;
+        height: 5em;
+        clear:both;
+        background:$base-blue;
+        padding:2px;
+        input.search-input{
+            display:block;
+            border-radius:12px;
+            width:24em;
+            margin:1em auto 0;
+        }
+        input.searchImage{
+            display:block;
+            float:right;
+            position: relative;
+            top: -26px;
+            right: 20px;
+        }
+    }
+    .widgetHeader{
+        background:$news-red;
+        height:5em;
+        padding: 0 1em;
+        h2{
+            text-align: center;
+            color:#fff;
+            font-size: 2em;
+            padding-top:.6em;
+            font-family: 'Alfa Slab One', cursive;
+            font-weight: 500;
+        }
+        
+    }
+    .widgetHeader-2{
+        height:4em;
+        padding: 0 1em;
+        h2{
+          font-family: 'Alfa Slab One', cursive; 
+          font-weight: 500;
+          color:$base-blue;
+           padding-top:1.4em;
+        }
+    }
+    .widget_mlbstandings_widget{
+        padding: 0 1em;
+        color:$base-blue;
+        #mlb_standings_body th{
+            color:$base-blue;
+            padding: 0 0 0 25px;
+            font-size: 1.3em;
+            font-weight: 800;
+        }
+        #mlb_standings_body th:nth-child(1){
+            visibility: hidden;
+        }
+        .mlbteam{
+            text-transform: uppercase;
+        }
+        #mlb_standings_body td{
+            padding:0 25px 0 0;
+            font-weight: 600;
+        }
+        p.mlbdate{
+            display: none;
+        }
+        h3{
+            margin: 0 0 -24px 0;
+        }
+    }
+    #recent-posts-2{
+        h3{
+            background:$news-red;
+            height:2.5em;
+            text-align: center;
+            color:#fff;
+            font-size: 2em;
+            padding-top:.6em;
+            font-family: 'Alfa Slab One', cursive;
+            font-weight: 500;
+        }
+        ul{
+            padding-bottom:3em;
+            li{
+              display: block;  
+              background:url(./assets/images/helment.png);
+              background-repeat: no-repeat;
+              height: 2em;
+              width:27em;
+              margin-bottom: 1em;
+              a{
+                  color:$base-blue;
+                  position: relative;
+                  left:3.5em;
+                  font-family: 'Alfa Slab One', cursive;
+                  font-weight: 300;
+                  line-height: 2.5em;
+              }
+            }
+        }
+    }
+    #sticky-posts-3, #sticky-posts-4 {
+        padding-bottom:3em;
+        h3{
+            background:$news-red;
+            height:2.5em;
+            text-align: center;
+            color:#fff;
+            font-size: 2em;
+            padding-top:.6em;
+            font-family: 'Alfa Slab One', cursive;
+            font-weight: 500;
+        }
+        header{
+            display: block;  
+            background:url(./assets/images/helment.png);
+            background-repeat: no-repeat;
+            height: 2em;
+            width:27em;
+            margin-bottom: 1em;
+            h4{
+                a{
+                    color:$base-blue;
+                    position: relative;
+                    left:3.5em;
+                    font-family: 'Alfa Slab One', cursive;
+                    font-weight: 300;
+                    line-height: 2em;
+                    font-size: .8em;
+                }
+            }
+        }
+        .upw-posts{
+            padding:0 1em;
+            article{
+                msrgin-bottom:1em;
+                border-bottom:none;
+                padding-bottom: 0;
+            }
+        }
+    }
+    .socialWidget{
+        width:100%;
+        height: 10em;
+        background:$base-blue;
+        display: block;
+        
+        h2{
+            text-align: center;
+            font-size: 2em;
+            font-family: 'Alfa Slab One', cursive;
+            color:#fff;
+            font-weight: 500;
+        }
+        span{
+            display: flex;
+            justify-content: space-around;
+            width:100%;
+            a{
+                .fa{
+                    color:#fff;
+                    font-size: 5em;
+                }
+            }
+        }
+    }
+    .newsLetterWidget{
+        display:block;
+        width:100%;
+        height:20em;
+        background:$news-red;
+        padding:0 1em;
+        .gform_wrapper{
+            .top_label{
+                .gfield_label{
+                    display:none;
+                }
+            }
+            .gform_heading{
+                h3{
+                    font-size: 2em;
+                    font-family: 'Alfa Slab One', cursive;
+                    color:#fff;
+                    font-weight: 500;
+                    text-align: center;
+                }
+            }
+            #gform_submit_button_1{
+                width:7em;
+                height:2em;
+                border:1px solid #000;
+                border-radius:0;
+                background:$news-red;
+            }
+            #input_1_1{
+                border:solid 1px #000;
+                border-radius: 0;
+            }
+        }
+    }
+}// .sibebar
+/*------------------------------------*\
+    IMAGES
+\*------------------------------------*/
+
 
 
 
 /*------------------------------------*\
-    IMAGES
+    GFORMS
 \*------------------------------------*/
+#gform_submit_button_1{
+    text-align: left;
+    margin-top:0;
+    padding-top:0;
+}
+
+
+
+/*------------------------------------*\
+    Test Area
+\*------------------------------------*/
+#gap{
+    height:4000px;   
+}
+
+
+h1.oops{
+    position:absolute;
+    top:2000px;   
+}
+
 
 
 
@@ -153,16 +526,8 @@ nav input[type="checkbox"]{
 	TYPOGRAPHY
 \*------------------------------------*/
 
-@font-face {
-	font-family:'Font-Name';
-	src:url('fonts/font-name.eot');
-	src:url('fonts/font-name.eot?#iefix') format('embedded-opentype'),
-		url('fonts/font-name.woff') format('woff'),
-		url('fonts/font-name.ttf') format('truetype'),
-		url('fonts/font-name.svg#font-name') format('svg');
-    font-weight:normal;
-    font-style:normal;
-}
+
+	
 
 
 

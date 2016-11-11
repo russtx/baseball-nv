@@ -54,20 +54,20 @@ and open the template in the editor.
 
 
     .nav .menu-icon .navicon {
-      background: $dark-blue;
+      background: $base-blue;
       display: block;
       height: 6px;
       position: relative;
       transition: background .2s ease-out; 
       width: 30px;
-      left: 17px;
+      //left: 17px;
       top: 0px;
      
     }
     
     .nav .menu-icon .navicon:before,
     .nav .menu-icon .navicon:after {
-      background: $dark-blue;
+      background: $base-blue;
       content: '';
       display: block;
       height: 6px;
@@ -125,16 +125,17 @@ and open the template in the editor.
     }
     
     .nav{
-        position: absolute;
+        position: relative;
         width: 280px;
         z-index: 2000;
         margin: 0 0 0 0;
-        top:39px;
+        top:30px;
+        right:10px;
    }
     .nav ul{
         height: auto;
         overflow: hidden;
-        background: $blue-trans;
+        background: $trans-blue;
         margin-left: 10px;
         position: relative;
         top: 50px;

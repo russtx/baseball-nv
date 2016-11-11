@@ -2,9 +2,11 @@
 
 	<main role="main">
 		<!-- section -->
-		<section>
+                <section class="mainSection">
 
-			<h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
+                    <span class="mainArticleHeader">
+                        <h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
+                    </span>
 
 			<?php get_template_part('loop'); ?>
 

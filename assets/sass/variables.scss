@@ -13,5 +13,13 @@ and open the template in the editor.
 $news-red:rgb(177, 15, 22);
 $footer-blue:rgb(22, 45, 84);
 $social-blue:(42, 111,183);
-$dark-blue:rgb(43, 56, 143);
-$blue-trans:rgba(43, 56, 143, .9);
+$dark-blue:rgb(22, 45, 84);
+$base-blue:rgb(42, 111, 183);
+$trans-blue:rgba(42, 111, 183, .8);
+$text-gray:rgb(106, 106, 106);
+
+//Fonts
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One');
+@import url('https://fonts.googleapis.com/css?family=Gentium+Book+Basic');
