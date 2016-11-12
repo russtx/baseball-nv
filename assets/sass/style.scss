@@ -136,8 +136,8 @@ input:focus {
 
 /* nav */
 .nav{
-    @include span-columns(2);
-    @include omega();
+    //@include span-columns(2);
+    //@include omega();
 }
 
 .upper-menu{
@@ -185,16 +185,37 @@ nav input[type="checkbox"]{
     @include outer-container;
     .upperFooter{
         @include span-columns(12);
-        background:$base-blue;
-        
+        background:$dark-blue;
+        height:12em;
         h2{
             font-size: 2em;
             font-family: 'Alfa Slab One', cursive;
             color:#fff;
             font-weight: 500;
             text-align: center;
+            margin-top:.5em;
             
         }
+        span{
+            display: flex;
+            justify-content: space-around;
+            a{
+                img{
+                    width:4em;
+                }
+            }
+        }
+    }
+    .lowerFooter{
+        @include span-columns(12);
+        background:$news-red;
+        img{
+            display:block;
+            margin: 1em auto 0;
+            width: 8em;
+            height:auto;
+        }
+        
     }
 }//footer
 .desktopOnly{
