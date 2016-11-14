@@ -15,8 +15,33 @@ and open the template in the editor.
     RESPONSIVE      min-width:375px iPhone6 Portrait
 \*--------------------------------------------------------------------------------------------*/
 @media only screen and (min-width:375px){
-    
-    
+    .header{
+        .nav{
+           
+        }
+        .logo{
+            a{
+                img{
+                    margin-left:1.3em;
+                    margin-top:1.5em;
+                }
+                h1{
+                    margin-left: 7.5em;
+                    margin-top: .8em;
+                    font-size: 1.3em;
+                }
+            }
+        }
+        .headerIcons{
+            margin-top:-1em;
+            a{
+                .fa{
+                    font-size:2.5em;
+                    margin-top:.1em;
+                }
+            }
+        }
+    }//header
 }
 
 
@@ -24,7 +49,18 @@ and open the template in the editor.
     RESPONSIVE      min-width:400px  iPhone6 Plus Portrait
 \*--------------------------------------------------------------------------------------------*/
 @media only screen and (min-width:400px){
-    
+   
+    .header{
+        .logo{
+            a{
+                h1{
+                    margin-left: 6.5em;
+                    margin-top: .8em;
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
 }
 
 
@@ -32,6 +68,45 @@ and open the template in the editor.
     RESPONSIVE      min-width:568px   iPhone5 Landscape
 \*--------------------------------------------------------------------------------------------*/
 @media only screen and (min-width:568px){
+     
+    .header{
+        
+        .desktopOnly{
+            display:block;
+        }
+        .logo{
+            @include span-columns(7); 
+            a{
+                img{
+                    width:8em;
+                    margin-left: .5em;
+                    margin-top: .5em;
+                }
+                h1{
+                    margin-top:1em;
+                }
+            }
+         }
+         .headerIcons{
+             @include span-columns(3);
+             display:flex;
+             justify-content: space-around;
+             margin-left:0;
+             margin-top:3em;
+             span{
+                 
+             }
+         }
+         nav{
+             @include span-columns(2);
+             @include omega();
+             top:42px;
+             right:26px;
+         }
+         .headerIcons.mobileOnly{
+            display:none;
+        }
+    }//header
     
 }
 
@@ -56,7 +131,145 @@ and open the template in the editor.
     RESPONSIVE      min-width:768px iPad Portrait
 \*--------------------------------------------------------------------------------------------*/
 @media only screen and (min-width:768px){
+    .header{
+        .logo{
+           @include span-columns(9); 
+           a{
+               img{
+                   margin-left: 4em;
+               } 
+               h1{
+                    margin-top:.5em;
+                    margin-left:9.5em;
+                    font-size:2em;
+                }
+                
+            }
+        }
+        .headerIcons{
+            @include span-columns(3);
+            @include omega();
+            display:flex;
+            padding-right:1em;
+        }
+        .nav{
+            @include span-columns(12);
+            margin-right:0;
+            height: 6em;
+            position: relative;
+            top: 3em;
+            right:0;
+            ul.menu{
+                display:none;
+            }
+            ul.upper-menu{
+                display: block;
+                margin: 0 5em 0 5em;
+                padding: 0 4em;
+                overflow: hidden;
+                li{
+                    //width:14em;
+                    float:left;
+                    list-style: initial;
+                    color:$base-blue;
+                    a{
+                        display: inline-block;
+                        padding: 14px 24px 0px 0;
+                        color:$base-blue;
+                        font-size: 1.2em;
+                        font-weight: 700;
+                        font-family: 'Alfa Slab One', cursive;
+                    }
+                }
+            }
+        }
+    }
     
+    .outerWrapper{
+         .mainContainer{
+            //@include outer-container;
+            margin-top:10em;
+            .mainSection{
+                @include span-columns(9);
+            }  
+            .sidebar{
+                @include span-columns(3);
+                @include omega();
+                clear:none;
+                
+                form.search{
+                    input.search-input{
+                        width:14em;
+                    }
+                }
+                .widget_mlbstandings_widget {
+                    h3{
+                        font-size: 1em;
+                    }
+                    #mlb_standings_body {
+                        th{
+                            padding:0 0 0 20px;
+                        }
+                        td{
+                            padding:0;
+                        }
+                    }
+                }
+
+                .upw-posts{
+                    .entry-title{
+                        width:100px;
+                    }
+                }
+                #sticky-posts-3, #sticky-posts-4{
+                    header{
+                        h4{
+                            a{
+                                line-height: 1em;
+                                font-size: .8em;
+                                display: block;
+                                width:124px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }//outerWrapper
+    .footer{
+        .upperFooter{
+            span{
+                a{
+                    img{
+                        width:5em;
+                    }
+                }
+            }
+        }
+        .lowerFooter{
+            img{
+                @include span-columns(3); 
+                padding:1em 1em 1em 5em;
+            }
+            .footerMenu{
+                @include span-columns(5);
+            }
+            .footerSocials{
+                @include span-columns(4);
+                @include omega();
+                margin-left:0;
+                display: flex;
+                margin-top:4em;
+                padding-right:1em;
+                img{
+                    width:100%;
+                    padding: 0;
+                    width:5em;
+                }
+            }
+        }
+    }
 }
 
 
@@ -64,15 +277,182 @@ and open the template in the editor.
     RESPONSIVE      min-width:1024px       ipad Landscape
 \*--------------------------------------------------------------------------------------------*/
 @media only screen and (min-width:1024px){
-    
+    .header{
+        .logo{
+            a{
+                h1{
+                    font-size:2.5em;
+                }
+                img{
+                    width:11em;
+                    margin-top:.2em;
+                }
+                
+            }
+            
+        }
+        .headerIcons{
+            a{
+                .fa{
+                    font-size: 3.5em;
+                }
+            }
+            span{
+                height:5em;
+                img{
+                    width:4em;
+                }
+                
+            }
+        }
+        .nav{
+            ul.upper-menu{
+                li{
+                    a{
+                        font-size:1.5em;
+                    }
+                }
+            } 
+        }
+    }//hedaer
+    .outerWrapper{
+        .mainContainer{
+            margin-top:12em;
+            .mainSection{
+                span.mainArticleHeader{
+                    h1{
+                        font-size:2.5em;
+                    }
+                }
+                .mainArticle{
+                    h2{a
+                       {
+                           font-size:1.5em;
+                       }
+                    }
+                    p{
+                        font-size: 1.2em;
+                    }
+                }
+            }//mainSection
+            .sidebar{
+                form.search input.searchImage{
+                    right:41px;
+                }
+                .widgetHeader-2{
+                    h2{
+                        font-size:1.5em;
+                        margin-bottom: .5em;
+                    }
+                }
+                #sticky-posts-4{
+                    h3{
+                        margin-top:1.5em;
+                    }
+                }
+                .widget_mlbstandings_widget{
+                    h3{
+                       margin:24px 0 -24px 0; 
+                    }
+                    #mlb_standings_body{
+                        th{
+                            padding: 0 0 0 31px;
+                        }
+                        td{
+                            padding:3px 0 0 0;
+                        }
+                    }
+                }
+                .socialWidget{
+                    height:15em;
+                    h2{
+                        margin-top:1em;
+                        padding-top:1em;
+                    }
+                }
+            }
+        }
+    }//outerWrapper
+    .footer{
+        .upperFooter{
+            height:17em;
+            span{
+                a{
+                    img{
+                        width:8em;
+                    }
+                }
+            }
+        }
+        .lowerFooter{
+            height:19em;
+            ul.lower-menu{
+                margin-top:5em;
+            }
+            .footerSocials{
+                a{
+                    .fa{
+                        font-size: 5em;
+                    }
+                }
+                span{
+                    height: 6.5em;
+                    a{
+                        img{
+                            width:5em;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
 /*-------------------------------------------------------------------------------------------*\
-    RESPONSIVE      min-width:1140px
+    RESPONSIVE      min-width:1200px
 \*--------------------------------------------------------------------------------------------*/
-@media only screen and (min-width:1140px){
-    
+@media only screen and (min-width:1200px){
+    .headerContainer{
+        @include outer-container;
+    }
+    .outerWrapper{
+        background:url(./assets/images/background.jpg);
+        background-size: cover;
+        //background-attachment: fixed;
+        background-repeat:no-repeat;
+        .mainContainer{
+            @include outer-container;
+            .mainSection{
+                background:#fff;
+                margin-top: 20px;
+                min-height: 2199px;
+            }
+            .sidebar{
+                background:#fff;
+                margin-top:20px;
+                min-height: 2195px;
+                form.search input.searchImage{
+                    right:64px;
+                }
+                .socialWidget{
+                    h2{
+                        margin-top:5.5em;
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        .upperFooterContainer{
+            @include outer-container;
+
+        }
+        .lowerFooterContainer{
+            @include outer-container;
+
+        }
+    }
 }
 
 

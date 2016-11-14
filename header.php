@@ -30,7 +30,7 @@
 
 			<!-- header -->
 			<header class="header clear" role="banner">
-
+                            <div class="headerContainer">
 					<!-- logo -->
 					<div class="logo">
 						<a href="<?php echo home_url(); ?>">
@@ -42,7 +42,7 @@
                                             
                                         </div>                                       
 					<!-- /logo -->
-                                        <div class="HeaderIcons desktopOnly">
+                                        <div class="headerIcons desktopOnly">
                                             <a href="https://twitter.com/home?status= <?php the_permalink();?>&t=<?php the_title(); ?>" target="_blank">
                                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                                             </a>
@@ -53,7 +53,10 @@
                                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                                             </a>
                                             <span>
-                                                <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping-cart.png" alt="shopping-cart" ></a>
+                                                <a href="#">
+                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping-cart.png" alt="shopping-cart" >
+                                                    <p>Cart</p>
+                                                </a>    
                                             </span>
                                                 
                                         </div>
@@ -77,11 +80,15 @@
                                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                                             </a>
                                             
-                                            <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping-cart.png" alt="shopping-cart" ></a>
-                                            
+                                             <span>
+                                                <a href="#">
+                                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/shopping-cart.png" alt="shopping-cart" >
+                                                    <p>Cart</p>
+                                                </a>
+                                             </span>
                                                 
                                         </div>
 
-
+                            </div><!--headerContainer -->                
 			</header>
 			<!-- /header -->

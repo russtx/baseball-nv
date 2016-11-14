@@ -88,12 +88,12 @@ function html5blank_nav()
         
        wp_nav_menu(
 	array(
-		'theme_location'  => 'extra-menu',
+		'theme_location'  => 'footer-menu',
 		'menu'            => '',
 		'container'       => 'div',
 		'container_class' => 'menu-{menu slug}-container',
 		'container_id'    => '',
-		'menu_class'      => 'lower-menu',
+		'menu_class'      => 'footer-menu',
 		'menu_id'         => '',
 		'echo'            => true,
 		'fallback_cb'     => 'wp_page_menu',
@@ -134,7 +134,7 @@ function register_my_menus() {
   register_nav_menus(
     array(
       'header-menu' => __( 'Header Menu' ),
-      'extra-menu' => __( 'Extra Menu' ),
+      'footer-menu' => __( 'Footer Menu' ),
       'mobile-menu' => __( 'Mobile Menu' )
     )
   );

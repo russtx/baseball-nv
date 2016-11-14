@@ -98,12 +98,13 @@ input:focus {
 
 /* wrapper */
 .wrapper {
-	max-width:1200px;
+	//max-width:1200px;
 	width:100%;
 	margin:0 auto;
 	position:relative;
         background:rgb(243, 243, 243);
-        //padding:0 1em;
+        padding:0;
+        overflow: hidden;
 }
 /* header */
 .header {
@@ -117,7 +118,7 @@ input:focus {
     img{
         width:6em;
         float:left;
-        margin-left: 1emm;
+        margin-left: .3em;
     }
     h1{
         color:#fff;
@@ -163,26 +164,36 @@ nav input[type="checkbox"]{
     justify-content: space-around;
     a{
         color:#fff;
+        
         .fa{
-            font-size: 1.5em;
+            font-size: 2em;
             
         }
-        img{
-            display:block;
-            width:2.5em;
+        
+        p{
+            font-size:.75em;
+            text-align: center;
         }
     }
-    a:nth-child(4){
+    span{
         height:3em;
         border-left:1px solid rgba(255, 255, 255, .4);
         padding-left:.5em;
+        margin-top:-.2em;
+        a{
+            img{
+                display:block;
+                width:2em;
+                margin-top:.1em;
+            }
+        }
     }
 }
 
 
 /* footer */
 .footer {
-    @include outer-container;
+    
     .upperFooter{
         @include span-columns(12);
         background:$dark-blue;
@@ -215,7 +226,69 @@ nav input[type="checkbox"]{
             width: 8em;
             height:auto;
         }
-        
+        ul.lower-menu{
+            display:block;
+            padding:0 3em;
+            height: 10em;
+            margin-top: 2em;
+            li{
+                display:list-item;
+                margin-top:.5em;
+                a{
+                    color:#fff;
+                }
+                
+            }
+            li:nth-child(4n), li:nth-child(5n), li:nth-child(6n){
+                 margin-left:8em; 
+                 position: relative;
+                 top:-5.5em;
+            }
+            li:nth-child(7n), li:nth-child(8n), li:nth-child(9n){
+                margin-left:16em; 
+                 position: relative;
+                 top:-11em;
+            }
+            
+        }
+        ul.menu{
+            display:none;
+            
+        }
+        .footerSocials{
+            @include span-columns(10);
+            @include shift(1);
+            display:flex;
+            justify-content:space-around;
+            
+            a{
+                .fa{
+                    color:#fff;
+                    font-size:3em;
+                    margin-top:.2em
+                }
+            }
+            span{
+                display: block;
+                border-left:solid 1px rgba(255, 255, 255, .5);
+                height: 4.5em;
+                padding: .5em 0 0 1em;
+                a{
+                    img{
+                        display: block;
+                        width:3em;
+                        height:auto;
+                        margin-top:0;
+                    }   
+                }
+            }
+            
+        }
+        p.copyright{
+            text-align: center;
+            color:#fff;
+            margin-top:1em;
+        }
     }
 }//footer
 .desktopOnly{
@@ -238,11 +311,13 @@ nav input[type="checkbox"]{
             font-size: 1.5em;
             margin-top:1em;
             margin-bottom:1em;
+            padding: 0 1em;
             height:2em;
         }
     }
     .mainArticle{
         font-family: 'Gentium Book Basic', serif;
+        padding: 0 1em;
         h2{
             a{
                 color:$news-red;
@@ -343,6 +418,7 @@ nav input[type="checkbox"]{
         
     }
     .widgetHeader-2{
+        background:#fff;
         height:4em;
         padding: 0 1em;
         h2{
@@ -353,6 +429,7 @@ nav input[type="checkbox"]{
         }
     }
     .widget_mlbstandings_widget{
+        background:#fff;
         padding: 0 1em;
         color:$base-blue;
         #mlb_standings_body th{
@@ -379,6 +456,7 @@ nav input[type="checkbox"]{
         }
     }
     #recent-posts-2{
+        background:#fff;
         h3{
             background:$news-red;
             height:2.5em;
@@ -411,6 +489,7 @@ nav input[type="checkbox"]{
     }
     #sticky-posts-3, #sticky-posts-4 {
         padding-bottom:3em;
+        background:#fff;
         h3{
             background:$news-red;
             height:2.5em;
@@ -480,7 +559,9 @@ nav input[type="checkbox"]{
         height:20em;
         background:$news-red;
         padding:0 1em;
+        margin-top: -1em;
         .gform_wrapper{
+            margin: 10px 0;
             .top_label{
                 .gfield_label{
                     display:none;
@@ -493,6 +574,8 @@ nav input[type="checkbox"]{
                     color:#fff;
                     font-weight: 500;
                     text-align: center;
+                    margin-top: 0;
+                    padding-top: 1em;
                 }
             }
             #gform_submit_button_1{
@@ -542,13 +625,6 @@ h1.oops{
 
 
 
-
-/*------------------------------------*\
-	TYPOGRAPHY
-\*------------------------------------*/
-
-
-	
 
 
 

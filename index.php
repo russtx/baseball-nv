@@ -1,21 +1,34 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-                <section class="mainSection">
+<div class="outerWrapper">
+        <div class="mainContainer" >   
 
-                    <span class="mainArticleHeader">
-                        <h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
-                    </span>
+            <main role="main">
+                    <!-- section -->
 
-			<?php get_template_part('loop'); ?>
 
-			<?php get_template_part('pagination'); ?>
+                    <section class="mainSection leftSide">
 
-		</section>
-		<!-- /section -->
-	</main>
 
-<?php get_sidebar(); ?>
+
+
+                        <span class="mainArticleHeader">
+                            <h1><?php _e( 'Latest Posts', 'html5blank' ); ?></h1>
+                        </span>
+
+                        <?php get_template_part('loop'); ?>
+
+                        <?php get_template_part('pagination'); ?>
+
+                    </section>
+                    <!-- /section -->
+                    
+                    <?php get_sidebar(); ?>
+            </main>
+
+
+                
+        </div><!-- mainContainer -->    
+</div><!-- outerWrapper -->
 
 <?php get_footer(); ?>

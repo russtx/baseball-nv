@@ -9,9 +9,15 @@ query_posts($args); ?>
 <!-- the loop -->
 <?php if ( have_posts() ) : while (have_posts()) : the_post(); ?>
 
-	<!-- article -->
+
+
+
+
+        <!-- article -->
 	<article id="post-<?php the_ID(); ?>" <?php post_class(mainArticle); ?>>
 
+                 
+            
 		<!-- post thumbnail -->
 		<?php if ( has_post_thumbnail()) : // Check if thumbnail exists ?>
 			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -83,12 +89,12 @@ query_posts($args); ?>
 	</article>
 	<!-- /article -->
 
- <?php endwhile; ?>
-<!-- pagination -->
-<?php next_posts_link(); ?>
-<?php previous_posts_link(); ?>
-<?php else : ?>
-<!-- No posts found -->
-<?php endif; ?>
+        <?php endwhile; ?>
+       <!-- pagination -->
+       <?php next_posts_link(); ?>
+       <?php previous_posts_link(); ?>
+       <?php else : ?>
+       <!-- No posts found -->
+       <?php endif; ?>
 
-           <div class="clearfix"></div>
+           
