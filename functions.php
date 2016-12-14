@@ -370,7 +370,7 @@ function html5blankcomments($comment, $args, $depth)
 	<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
 	<?php endif; ?>
 	<div class="comment-author vcard">
-	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['180'] ); ?>
+	<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, 180 ); ?>
 	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
 	</div>
 <?php if ($comment->comment_approved == '0') : ?>
@@ -457,31 +457,30 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 // Create 1 Custom Post type for a Demo, called HTML5-Blank
 function create_post_type_html5()
 {
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
+    register_taxonomy_for_object_type('category', 'affiliates'); // Register Taxonomies for Category
+    register_taxonomy_for_object_type('post_tag', 'affiliates');
+    register_post_type('affiliates', // Register Custom Post Type
         array(
         'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
-            'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
-            'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+            'name' => __('Affiliates', 'affiliates'), // Rename these to suit
+            'singular_name' => __('Affiliates', 'affiliates'),
+            'add_new' => __('Add New', 'affiliates'),
+            'add_new_item' => __('Add New Affiliates', 'affiliates'),
+            'edit' => __('Edit', 'affiliates'),
+            'edit_item' => __('Edit Affiliates', 'affiliates'),
+            'new_item' => __('New Affiliates', 'affiliates'),
+            'view' => __('View Affiliates', 'affiliates'),
+            'view_item' => __('View Affiliates', 'affiliates'),
+            'search_items' => __('Search Affiliates', 'affiliates'),
+            'not_found' => __('No Affiliatess found', 'affiliates'),
+            'not_found_in_trash' => __('No Affiliatess found in Trash', 'affiliates')
         ),
+         'menu_icon' => 'dashicons-format-image',     
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
         'has_archive' => true,
         'supports' => array(
             'title',
-            'editor',
-            'excerpt',
             'thumbnail'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
@@ -553,5 +552,320 @@ add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
-?>
+//Pagination
+function custom_pagination($numpages = '', $pagerange = '', $paged='') {
 
+  if (empty($pagerange)) {
+    $pagerange = 2;
+  }
+
+  /**
+   * This first part of our function is a fallback
+   * for custom pagination inside a regular loop that
+   * uses the global $paged and global $wp_query variables.
+   * 
+   * It's good because we can now override default pagination
+   * in our theme, and use this function in default quries
+   * and custom queries.
+   */
+  global $paged;
+  if (empty($paged)) {
+    $paged = 1;
+  }
+  if ($numpages == '') {
+    global $wp_query;
+    $numpages = $wp_query->max_num_pages;
+    if(!$numpages) {
+        $numpages = 1;
+    }
+  }
+
+  /** 
+   * We construct the pagination arguments to enter into our paginate_links
+   * function. 
+   */
+  $pagination_args = array(
+    'base'            => get_pagenum_link(1) . '%_%',
+    'format'          => '?page=%#%',
+    'total'           => $numpages,
+    'current'         => $paged,
+    'show_all'        => False,
+    'end_size'        => 1,
+    'mid_size'        => 2,
+    'prev_next'       => True,
+    'prev_text'       => __('<< Prev'),
+    'next_text'       => __('Next >>'),
+    'type'            => 'plain',
+    'add_args'        => false,
+    'add_fragment'    => ''
+  );
+
+  $paginate_links = paginate_links($pagination_args);
+
+  if ($paginate_links) {
+    echo "<nav class='custom-pagination'>";
+      echo "<span class='page-numbers page-num'>Page " . $paged . " of " . $numpages . "</span> ";
+      echo $paginate_links;
+    echo "</nav>";
+  }
+
+}
+function my_post_queries( $query ) {
+  // do not alter the query on wp-admin pages and only alter it if it's the main query
+  if (!is_admin() && $query->is_main_query()){
+
+    // alter the query for the home and category pages 
+
+    
+
+    if(is_category()){
+      $query->set('posts_per_page', 7);
+    }
+
+  }
+}
+add_action( 'pre_get_posts', 'my_post_queries' );
+
+//mlb standings functions
+add_action('bnv_mlb_standings_update', 'bnv_update_mlb_standings');
+add_action('wp', 'bnv_update_activation');
+function bnv_update_activation(){
+  if(!wp_next_scheduled('bnv_mlb_standings_update')){
+    wp_schedule_event(current_time('timestamp'), 'hourly', 'bnv_mlb_standings_update');
+  }
+}
+
+function bnv_update_mlb_standings(){
+  $url = 'https://erikberg.com/mlb/standings.json';
+  $user_agent_email = 'jcampbell@childressagency.com';
+  $user_agent_version = '1.1';
+
+  $raw_mlb_standings = bnv_get_mlb_standings($url, $user_agent_email, $user_agent_version);
+  $mlb_standings = json_decode($raw_mlb_standings);
+  
+  if(!empty($mlb_standings)){
+    global $wpdb;
+    $standings = $mlb_standings->standing;
+    $standings_date = $mlb_standings->standings_date;
+    $i=0;
+    
+    //clear out the table
+    $wpdb->query("TRUNCATE TABLE mlb_standings");
+    
+    foreach($standings as $standing){
+      $wpdb->insert(
+        'mlb_standings',
+        array(
+          'standings_date' => $standings_date,
+          'rank' => $standing->rank,
+          'won' => $standing->won,
+          'lost' => $standing->lost,
+          'streak' => $standing->streak,
+          'ordinal_rank' => $standing->ordinal_rank,
+          'first_name' => $standing->first_name,
+          'last_name' => $standing->last_name,
+          'team_id' => $standing->team_id,
+          'games_back' => $standing->games_back,
+          'points_for' => $standing->points_for,
+          'points_against' => $standing->points_against,
+          'home_won' => $standing->home_won,
+          'home_lost' => $standing->home_lost,
+          'away_won' => $standing->away_won,
+          'away_lost' => $standing->away_lost,
+          'conference_won' => $standing->conference_won,
+          'conference_lost' => $standing->conference_lost,
+          'last_five' => $standing->last_five,
+          'last_ten' => $standing->last_ten,
+          'conference' => $standing->conference,
+          'division' => $standing->division,
+          'points_scored_per_game' => $standing->points_scored_per_game,
+          'points_allowed_per_game' => $standing->points_allowed_per_game,
+          'win_percentage' => $standing->win_percentage,
+          'point_differential' => $standing->point_differential,
+          'point_differential_per_game' => $standing->point_differential_per_game,
+          'streak_type' => $standing->streak_type,
+          'streak_total' => $standing->streak_total,
+          'games_played' => $standing->games_played
+        ),
+        array(
+          '%s', //standings_date
+          '%d', //rank
+          '%d', //won
+          '%d', //lost
+          '%s', //streak
+          '%s', //ordinal_rank
+          '%s', //first_name
+          '%s', //last_name
+          '%s', //team_id
+          '%f', //games_back
+          '%d', //points_for
+          '%d', //points_against
+          '%d', //home_won
+          '%d', //home_lost
+          '%d', //away_won
+          '%d', //away_lost
+          '%d', //conference_won
+          '%d', //conference_lost
+          '%s', //last_five
+          '%s', //last_ten
+          '%s', //conference
+          '%s', //division
+          '%s', //points_scored_per_game
+          '%s', //points_allowed_per_game
+          '%s', //win_percentage
+          '%d', //point_differential
+          '%s', //point_differential_per_game
+          '%s', //streak_type
+          '%d', //streak_total
+          '%d', //games_played
+        )
+      );
+    }
+  }
+}
+
+function bnv_mlb_standings(){
+  $standings = array();
+  $i=0;
+  
+  global $wpdb;
+  $mlb_standings = $wpdb->get_results("
+    SELECT conference, division, rank, won, lost, win_percentage, CONCAT(first_name, ' ', last_name) AS team_name, team_id
+    FROM mlb_standings");
+  
+  foreach($mlb_standings as $standing){
+    $conference = $standing->conference;
+    $division = $standing->division;
+    $rank = $standing->rank;
+    $won = $standing->won;
+    $lost = $standing->lost;
+    $win_percentage = $standing->win_percentage;
+    //$first_name = $standing->first_name;
+    //$last_name = $standing->last_name;
+    //$team_name = $first_name . ' ' . $last_name;
+    $team_name = $standing->team_name;
+    $team_id = $standing->team_id;
+    
+    $standings[$conference][$division][$i]['rank'] = $rank;
+    $standings[$conference][$division][$i]['won'] = $won;
+    $standings[$conference][$division][$i]['lost'] = $lost;
+    $standings[$conference][$division][$i]['win_percentage'] = $win_percentage;
+    $standings[$conference][$division][$i]['team_name'] = $team_name;
+    $standings[$conference][$division][$i]['team_link'] = $team_id;
+    
+    $i++;    
+  }
+  
+  return $standings;
+}
+
+function bnv_get_mlb_standings($url, $user_agent_email, $user_agent_version){
+  $ch = curl_init();
+  $timeout = 5;
+  $user_agent = sprintf('smlstats-exphp/%s (%s)', $user_agent_version, $user_agent_email);
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
+  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+  $data = curl_exec($ch);
+  curl_close($ch);
+  
+  return $data;  
+}
+
+function bnv_get_team_rss($team_name){
+  switch($team_name){
+    case 'boston-red-sox':
+      return 'bos.xml';
+    break;
+    case 'toronto-blue-jays':
+      return 'tor.xml';
+    break;
+    case 'baltimore-orioles':
+      return 'bal.xml';
+    break;
+    case 'new-york-yankees':
+      return 'nyy.xml';
+    break;
+    case 'tampa-bay-rays':
+      return 'tb.xml';
+    break;
+    case 'cleveland-indians':
+      return 'cle.xml';
+    break;
+    case 'detroit-tigers':
+      return 'det.xml';
+    break;
+    case 'kansas-city-royals':
+      return 'kc.xml';
+    break;
+    case 'chicago-white-sox':
+      return 'cws.xml';
+    break;
+    case 'minnesota-twins':
+      return 'min.xml';
+    break;
+    case 'texas-rangers':
+      return 'tex.xml';
+    break; 
+    case 'seattle-mariners':
+      return 'sea.xml';
+    break;
+    case 'houston-astros':
+      return 'hou.xml';
+    break;
+    case 'los-angeles-angels':
+      return 'ana.xml';
+    break;
+    case 'oakland-athletics':
+      return 'oak.xml';
+    break;
+    case 'washington-nationals':
+      return 'was.xml';
+    break;
+    case 'new-york-mets':
+      return 'nym.xml';
+    break;
+    case 'miami-marlins':
+      return 'mia.xml';
+    break;
+    case 'philadelphia-phillies':
+      return 'phi.xml';
+    break;
+    case 'atlanta-braves':
+      return 'atl.xml';
+    break;
+    case 'chicago-cubs':
+      return 'chc.xml';
+    break;
+    case 'st-louis-cardinals':
+      return 'stl.xml';
+    break;
+    case 'pittsburg-pirates':
+      return 'pit.xml';
+    break;
+    case 'milwaukee-brewers':
+      return 'mil.xml';
+    break;
+    case 'cincinnati-reds':
+      return 'cin.xml';
+    break;
+    case 'los-angeles-dodgers':
+      return 'la.xml';
+    break;
+    case 'san-francisco-giants':
+      return 'sf.xml';
+    break;
+    case 'colorado-rockies':
+      return 'col.xml';
+    break;
+    case 'arizona-diamondbacks':
+      return 'ari.xml';
+    break;
+    case 'san-diego-padres':
+      return 'sd.xml';
+    break;
+    default:
+      return 'mlb.xml';
+  }
+}

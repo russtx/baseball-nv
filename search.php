@@ -1,8 +1,10 @@
 <?php get_header(); ?>
 
+<div class="outerWrapper">
+        <div class="mainContainer" >
 	<main role="main">
 		<!-- section -->
-		<section>
+		<section class="mainSection leftSide" >
 
 			<h1><?php echo sprintf( __( '%s Search Results for ', 'html5blank' ), $wp_query->found_posts ); echo get_search_query(); ?></h1>
 
@@ -12,8 +14,10 @@
 
 		</section>
 		<!-- /section -->
+                <?php get_sidebar(); ?>
 	</main>
 
-<?php get_sidebar(); ?>
 
+    </div><!-- mainContainer -->    
+</div><!-- outerWrapper -->  
 <?php get_footer(); ?>

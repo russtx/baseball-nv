@@ -1,11 +1,11 @@
 /*!
-	Theme Name: HTML5 Blank
+	Theme Name: Baseball News & Review
 	Theme URI: http://html5blank.com
-	Description: HTML5 Blank WordPress Theme
+	Description: Baseball News & Views
 	Version: 1.4.3
-	Author: Todd Motto (@toddmotto)
-	Author URI: http://toddmotto.com
-	Tags: Blank, HTML5, CSS3
+	Author: Russ Berge
+	Author URI: http://toplinemediateam.com
+	
 
 	License: MIT
 	License URI: http://opensource.org/licenses/mit-license.php
@@ -17,15 +17,11 @@
 
 @import "assets/sass/bourbon/bourbon.scss";
 
-
 @import "assets/sass/neat/neat.scss";
-
 
 @import 'mobile-menu.scss';
 
-
 @import 'variables.scss';
-
 
 @import "base/base";
 
@@ -136,10 +132,6 @@ input:focus {
 }
 
 /* nav */
-.nav{
-    //@include span-columns(2);
-    //@include omega();
-}
 
 .upper-menu{
     display:none;
@@ -358,7 +350,7 @@ nav input[type="checkbox"]{
         }
     }
     .postBottom{
-        span.postDate{
+        span.postDate, span.author{
             color:$dark-blue;
         }
         span.postLinks{
@@ -375,6 +367,18 @@ nav input[type="checkbox"]{
         }
         a{
             color:$news-red;
+        }
+    }
+    .paginationLinks{
+        @include span-columns(6);
+        @include shift(3);
+        margin-top:2em;
+        color:$news-red;
+        span.leftPagination{
+            float:left;
+        }
+        span.rightPagination{
+            float:right;
         }
     }
 }//mainSection
@@ -400,7 +404,7 @@ nav input[type="checkbox"]{
             float:right;
             position: relative;
             top: -26px;
-            right: 20px;
+            right: 35px;
         }
     }
     .widgetHeader{
@@ -471,7 +475,7 @@ nav input[type="checkbox"]{
             padding-bottom:3em;
             li{
               display: block;  
-              background:url(./assets/images/helment.png);
+              background:url(./assets/images/helmet.png);
               background-repeat: no-repeat;
               height: 2em;
               width:27em;
@@ -502,7 +506,7 @@ nav input[type="checkbox"]{
         }
         header{
             display: block;  
-            background:url(./assets/images/helment.png);
+            background:url(./assets/images/helmet.png);
             background-repeat: no-repeat;
             height: 2em;
             width:27em;
@@ -584,6 +588,7 @@ nav input[type="checkbox"]{
                 border:1px solid #000;
                 border-radius:0;
                 background:$news-red;
+                line-height: 1.8em;
             }
             #input_1_1{
                 border:solid 1px #000;
@@ -592,6 +597,240 @@ nav input[type="checkbox"]{
         }
     }
 }// .sibebar
+.page-template-default{
+    .outerWrapper{
+        .mainContainer{
+            .mainSection{
+                img.helmet-img{
+                    position: relative;
+                    top:1.3em;
+                    width:20px;
+                }
+                .mainArticleHeader{
+                    display:block;
+                    margin-bottom:6em;
+                }
+                .mainArticle{
+                    padding:0 3em;
+                    h2{
+                        font-family: 'Alfa Slab One', cursive;
+                        color:$news-red;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+.category{
+    
+     .outerWrapper{
+        
+        .mainContainer{
+             
+            .mainSection{
+                padding:0;
+                .mainArticleHeader{
+                    display:block;
+                    margin-bottom: 4em;
+                }
+                .mainArticle{
+                    h2{
+                        @include span-columns(8);
+                        img{
+                            position: relative;
+                            top:2.7em;
+                            width:25px;
+                        }
+                        a{
+                            position: relative;
+                            left: 2em;
+                            //width: 70%;
+                            display: block;
+                            margin-top:1em;
+                        }
+                        
+                    } 
+                    .stats{
+                        @include span-columns(3);
+                        @include shift(1);
+                        @include omega();
+                        margin-top:3em;
+                        p{
+                            margin-bottom: 0;
+                            
+                            color: $base-blue;
+                        }
+                    }
+                    .postBottom{
+                        @include span-columns(12);
+                    }
+                }
+                .paginationSection{
+                    position: absolute;
+                    top: 16em;
+                    width:100%;
+                    height:2.1em;
+                    background:$base-blue;
+                    .custom-pagination{
+                        width:12em;
+                        float:left;
+                        margin-left: 1em;
+                        margin-top: 4px;
+                        a.page-numbers, .current {
+                            color:$news-red;
+                            background: #fff;
+                            padding: 0 4px;
+                        }
+                        span.dots{
+                            color:$news-red;
+                            background: #fff;
+                            padding: 0 4px;
+                        }
+                        span.page-num{
+                            display: none;
+                        }
+                    }
+                    form{
+                        width:9em;
+                        float: right;
+                        display: block;
+                        margin-right: 2em;
+                        margin-top:2px;
+                        select{
+                            color:$news-red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}//category
+.single{
+    .outerWrapper{
+        .mainContainer{
+            .mainSection{
+                [type='submit']{
+                    background:#fff;
+                    color:#000;
+                }
+                .comments{
+                    a{
+                        display: none;
+                    }
+                    h2{
+                        margin-top:2em;
+                        color:$news-red;
+                        font-family: 'Alfa Slab One', cursive;
+                    }
+                    ul{
+                        li{
+                            p{
+                                color:#000;
+                            }
+                            img{
+                                float:left;
+                                padding:1em;
+                            }
+                        }
+                    }
+                    #respond{
+                         display:none;
+                        h3{
+                           
+                        }
+                    }
+                }
+                .mainArticle{
+                    
+                }
+            }
+        }
+    }
+}
+.page-template-affiliates-page{
+    .outerWrapper{
+        .mainContainer{
+            .mainSection{
+                
+                .mainArticle{
+                    
+                    margin-top:1em;
+                    .affiliateImg{
+                        
+                       @include span-columns(12);
+                        height:22em;
+                        img{
+                            display: block;
+                            height: 12em;
+                            width:auto;
+                            margin:1em auto;
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}
+.fullSection{
+    background:#fff;
+    padding:3em 6em;
+    h1{
+        color:$base-blue;
+        font-family: 'Alfa Slab One', cursive;
+        border-bottom:dashed 1px $news-red;
+        height:2em;
+        font-size: 1.3em;
+    }
+    
+}
+.woocommerce {
+    ul.products {
+        li.product {
+            h3{
+                text-align: center;
+            }
+            .price{
+                text-align: center;
+                color:$base-blue;
+                font-size: 1.2em;
+            }
+            .button{
+                margin: 1em auto;
+                display: block;
+                width: 7em;
+                border:1px solid $news-red;
+                background:$news-red;
+                color:#fff;
+            }
+        }
+    }
+}
+.woocommerce div.product p.price, .woocommerce div.product span.price{
+    color:$news-red;
+}
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+    background:$news-red !important;
+    border:solid 1px $news-red !important;
+    color:#fff;
+}
+.woocommerce div.product form.cart .button{
+    background:$news-red;
+    border:solid 1px $news-red;
+    color:#fff;
+}
+.woocommerce-page{
+    .outerWrapper {
+        .mainContainer {
+            .mainSection {
+                img.helmet-img{
+                    display:none;
+                }
+            }
+        }
+    }
+}
 /*------------------------------------*\
     IMAGES
 \*------------------------------------*/
@@ -599,6 +838,53 @@ nav input[type="checkbox"]{
 
 
 
+
+
+
+/*------------------------------------*\
+    hovers
+\*------------------------------------*/
+.header .headerIcons a:hover, .sidebar .socialWidget span a .fa:hover {
+    color:rgb(178, 174, 174);
+}
+.postSocials button:hover,.mainSection .comments #respond input[type="submit"]:hover {
+    background:$text-gray;
+    color:#fff;
+}
+.sidebar .newsLetterWidget .gform_wrapper #gform_submit_button_1:hover{
+    background:#fff;
+    color:$news-red;
+}
+.mainSection .paginationLinks span:hover{
+    color:$base-blue;
+}
+.footer .upperFooter span a img:hover{
+    opacity: .5;
+}
+.footer .lowerFooter .footerSocials a .fa:hover{
+    color:rgb(178, 174, 174);
+}
+.footer .lowerFooter .footerSocials span a img:hover, .headerIcons span a img:hover{
+    opacity: .5;
+}
+.mainArticle h2 a:hover{
+    opacity: .5;
+}
+.category .outerWrapper .mainContainer .mainSection .paginationSection .custom-pagination a.page-numbers:hover, .category .outerWrapper .mainContainer .mainSection .paginationSection .custom-pagination .current:hover{
+    color:$base-blue;
+}
+.woocommerce ul.products li.product .button:hover{
+    background:#fff;
+    color:$news-red;
+}
+.woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover{
+    background:#fff !important;
+    color:$news-red !important;
+}
+.woocommerce div.product form.cart .button:hover{
+    background:#fff ;
+    color:$news-red ;
+}
 /*------------------------------------*\
     GFORMS
 \*------------------------------------*/
@@ -622,10 +908,6 @@ h1.oops{
     position:absolute;
     top:2000px;   
 }
-
-
-
-
 
 
 /*------------------------------------*\
