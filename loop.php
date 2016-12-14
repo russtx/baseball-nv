@@ -1,20 +1,28 @@
 
 
 
+
 <?php 
-// the query to set the posts per page to 3
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$args = array('posts_per_page' => 2, 'paged' => $paged );
-query_posts($args); ?>
-<!-- the loop -->
-<?php if ( have_posts() ) : while (have_posts()) : the_post(); ?>
+
+  $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+
+  $custom_args = array(
+      'post_type' => 'post',
+      'posts_per_page' => 2,
+      'paged' => $paged
+    );
+
+  $custom_query = new WP_Query( $custom_args ); ?>
+
+  <?php if ( $custom_query->have_posts() ) : ?>
+<?php while ( $custom_query->have_posts() ) : $custom_query->the_post(); ?>
 
 
 
 
 
         <!-- article -->
-	<article id="post-<?php the_ID(); ?>" <?php post_class(mainArticle); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class('mainArticle'); ?>>
 
                  
             
@@ -70,13 +78,14 @@ query_posts($args); ?>
                     global $withcomments;
                     $withcomments = true;
                     comments_template( '', true );
+                    $args = '';
                 ?>
    
                <?php comment_reply_link( $args, $comment, $post ); ?>
                 
                 
                 <div class="postBottom">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/helment.png" alt="helment">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/helmet.png" alt="helmet">
                     <span class="postDate">Posted on <?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?> |</span> 
                     <span class="postLinks"><a href="#"> Permalink</a> <span class="grayDivider">|</span> <?php comments_number( 'no responses', 'one response', '% responses' ); ?>. </span>
 
@@ -89,12 +98,19 @@ query_posts($args); ?>
 	</article>
 	<!-- /article -->
 
-        <?php endwhile; ?>
-       <!-- pagination -->
-       <?php next_posts_link(); ?>
-       <?php previous_posts_link(); ?>
-       <?php else : ?>
-       <!-- No posts found -->
-       <?php endif; ?>
+       <?php endwhile; ?>
 
+<?php else: ?>
+
+	<!-- article -->
+	<article>
+		<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+	</article>
+	<!-- /article -->
+
+<?php endif; ?>
+        <div class="paginationLinks">   
+            <span class="leftPagination"><?php previous_post_link('<< Prev');?></span>
+            <span class="rightPagination"><?php  next_post_link('Next >>');  ?></span>
+        </div>    
            

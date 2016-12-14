@@ -1,45 +1,55 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+<div class="outerWrapper">
+        <div class="mainContainer" > 
+            <main role="main">
+                    <!-- section -->
+                    <section class="mainSection leftSide">
+                        <span class="mainArticleHeader">
+                            <h1><?php the_title(); ?></h1>
+                        </span>   
+                    <?php if (have_posts()): while (have_posts()) : the_post(); ?>
+                            
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/helmet.png" alt="Logo" class="helmet-img">
 
-			<h1><?php the_title(); ?></h1>
+                            <!-- article -->
+                            <article id="post-<?php the_ID(); ?>" <?php post_class('mainArticle'); ?>>
+                                <span class="subHeader">
+                                    <h2><?php echo get_post_meta($post->ID, 'sub-title', true); ?></h2>
+                                </span>
+                                    <?php the_content(); ?>
 
-		<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+                                    <?php comments_template( '', true ); // Remove if you don't want comments ?>
 
-			<!-- article -->
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                                    <br class="clear">
 
-				<?php the_content(); ?>
+                                    <?php edit_post_link(); ?>
 
-				<?php comments_template( '', true ); // Remove if you don't want comments ?>
+                            </article>
+                            <!-- /article -->
 
-				<br class="clear">
+                    <?php endwhile; ?>
 
-				<?php edit_post_link(); ?>
+                    <?php else: ?>
 
-			</article>
-			<!-- /article -->
+                            <!-- article -->
+                            <article>
 
-		<?php endwhile; ?>
+                                    <h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
 
-		<?php else: ?>
+                            </article>
+                            <!-- /article -->
 
-			<!-- article -->
-			<article>
+                    <?php endif; ?>
 
-				<h2><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h2>
+                    </section>
+                    <!-- /section -->
+                <?php get_sidebar(); ?>    
+                    
+            </main>
+    </div><!-- mainContainer -->    
+</div><!-- outerWrapper -->            
 
-			</article>
-			<!-- /article -->
 
-		<?php endif; ?>
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

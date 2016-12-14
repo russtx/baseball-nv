@@ -52,11 +52,11 @@
 
                                               <i class="fa fa-facebook-square" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#">
+                                        <a href="https://www.instagram.com/?hl=en">
                                               <i class="fa fa-instagram" aria-hidden="true"></i>
                                         </a>
                                         <span>
-                                            <a href="#">
+                                            <a href="<?php echo home_url(); ?>/cart">
                                                 <img src="<?php echo get_template_directory_uri(); ?>/assets/images/searchIcon.png" alt="business">
                                             </a>
                                         </span>

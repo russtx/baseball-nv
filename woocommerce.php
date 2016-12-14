@@ -1,17 +1,19 @@
-<?php get_header(); ?>
-
-	<main role="main">
-		<!-- section -->
-		<section>
-
-			
-                        <?php woocommerce_content(); ?>
-		
-
-		</section>
-		<!-- /section -->
-	</main>
-
-<?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
+<?php get_header(); ?>
+<div class="outerWrapper">
+        <div class="mainContainer" >
+	<main role="main">
+		<!-- section -->
+		<section class="fullSection">
+                    
+			
+                        <?php woocommerce_content(); ?>
+		
+		</section>
+		<!-- /section -->
+                
+	</main>
+
+
+    </div><!-- mainContainer -->    
+</div><!-- outerWrapper -->  
+<?php get_footer(); ?>
